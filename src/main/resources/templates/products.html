@@ -1,0 +1,49 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Mvc tutorial - list products</title>
+    <link rel="stylesheet" href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}" media="screen"/>
+    <script  src="http://cdn.jsdelivr.net/webjars/jquery/2.2.4/jquery.min.css"
+             th:src="@{/webjars/jquery/2.2.4/jquery.min.js}"></script>
+    <link rel="stylesheet" href="../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" media="screen"/>
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(products)}">
+        <h2>Product List</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Image URL</th>
+                <th>List</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.imageUrl}"></td>
+                <td><a  th:href="${'/product/' + product.id}">View</a></td>
+                <td><a  th:href="${'/product/edit/' + product.id}">Edit</a></td>
+                <td><a  th:href="${'/product/delete/' + product.id}">Delete</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <a href="/product/new">New Product</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
